@@ -10,7 +10,12 @@
   "python_version": "3",
   "product_version_regex": ".*",
   "publisher": "BigID",
-  "license": "Copyright (c) BigID, 2022",
+  "contributors": [
+    {
+        "name": "Darrell Coleman"
+    }
+  ],
+  "license": "Copyright (c) BigID, 2023",
   "app_version": "1.9.0",
   "utctime_updated": "2023-03-13T19:22:48.418638Z",
   "package_name": "phantom_bigiddatadiscovery",
