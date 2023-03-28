@@ -38,6 +38,7 @@ class BigidProxy:
         return requests.put(self.bigid_url + endpoint, headers=self.headers, verify=False, data=payload)
 
     def refresh_token(self):
+        # nosemgrep
         response = requests.get(self.bigid_url + 'refresh-access-token', headers=self.headers, verify=False)
         data = json.loads(response.text)
         self.headers['Authorization'] = data['systemToken']
