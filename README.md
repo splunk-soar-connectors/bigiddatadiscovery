@@ -47,10 +47,10 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 ### Supported Actions  
 [test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration  
 [refresh session token](#action-refresh-session-token) - Refresh the session token  
-[get catalog data objects](#action-get-catalog-data-objects) - Get a full list of all data objects and their characteristics.  
+[get catalog objects](#action-get-catalog-objects) - Get a full list of all data objects and their characteristics  
 [get pii findings](#action-get-pii-findings) - Retrieve all PII findings for a given list of data sources  
 [execute scan](#action-execute-scan) - Execute a scan for a given data source  
-[get last scan result](#action-get-last-scan-result) - Retrieve the most recent scan result for the data source  
+[get last scan](#action-get-last-scan) - Retrieve the most recent scan result for the data source  
 [get audit logs](#action-get-audit-logs) - Retrieve BigID audit logs  
 
 ## action: 'test connectivity'
@@ -82,8 +82,8 @@ action_result.message | string |  |
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
 
-## action: 'get catalog data objects'
-Get a full list of all data objects and their characteristics.
+## action: 'get catalog objects'
+Get a full list of all data objects and their characteristics
 
 Type: **investigate**  
 Read only: **False**
@@ -91,9 +91,9 @@ Read only: **False**
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
-**filter** |  optional  | search filter | string | 
-**limit** |  optional  | pagination limit | numeric | 
-**offset** |  optional  | number of records to skip | numeric | 
+**filter** |  optional  | Search filter | string | 
+**limit** |  optional  | Pagination limit | numeric | 
+**offset** |  optional  | Number of records to skip | numeric | 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
@@ -146,7 +146,7 @@ action_result.message | string |  |
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
 
-## action: 'get last scan result'
+## action: 'get last scan'
 Retrieve the most recent scan result for the data source
 
 Type: **investigate**  
