@@ -2,11 +2,11 @@
 # BigID Data Discovery
 
 Publisher: BigID  
-Connector Version: 1.9.0  
+Connector Version: 1.0.0  
 Product Vendor: BigiD  
 Product Name: Discovery Foundation  
 Product Version Supported (regex): ".\*"  
-Minimum Product Version: 5.3.5.97812  
+Minimum Product Version: 5.3.5  
 
 BigID is a next-gen data discovery and intelligence platform for the data you know and the data you don’t know
 
