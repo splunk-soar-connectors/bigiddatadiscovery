@@ -59,6 +59,8 @@ Validate the asset configuration for connectivity using supplied configuration
 Type: **test**  
 Read only: **True**
 
+This action will validate the asset configuration for connectivity using supplied configuration.
+
 #### Action Parameters
 No parameters are required for this action
 
@@ -70,6 +72,8 @@ Refresh the session token
 
 Type: **generic**  
 Read only: **False**
+
+This action will refresh the user access token for BigID.
 
 #### Action Parameters
 No parameters are required for this action
@@ -87,6 +91,8 @@ Get a full list of all data objects and their characteristics
 
 Type: **investigate**  
 Read only: **False**
+
+This action retrieves a full list of all data objects and their characteristics from the BigID data catalog.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
@@ -112,6 +118,8 @@ Retrieve all PII findings for a given list of data sources
 Type: **investigate**  
 Read only: **False**
 
+This action retrieves all PII findings from BigID for the list of data sources provided by the user.
+
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
@@ -131,6 +139,8 @@ Execute a scan for a given data source
 
 Type: **investigate**  
 Read only: **False**
+
+This action executes a BigID data scan of the data source provided by the user.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
@@ -152,6 +162,8 @@ Retrieve the most recent scan result for the data source
 Type: **investigate**  
 Read only: **False**
 
+This action retrieves the most recent BigID data scan result for the data source provided by the user.
+
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 --------- | -------- | ----------- | ---- | --------
@@ -171,6 +183,8 @@ Retrieve BigID audit logs
 
 Type: **investigate**  
 Read only: **False**
+
+This action will retrieve audit logs from the BigID system.
 
 #### Action Parameters
 No parameters are required for this action
