@@ -34,7 +34,7 @@ from bs4 import BeautifulSoup
 from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
 
-from bigid_proxy import BigidProxy
+from bigiddatadiscovery_bigid_proxy import BigidProxy
 
 
 class RetVal(tuple):
@@ -232,11 +232,11 @@ class BigidDataDiscoveryConnector(BaseConnector):
         # Optional values should use the .get() function
         # optional_parameter = param.get('optional_parameter', 'default_value')
 
-        # call the bigid refresh token action
+        # Call the bigid refresh token action
         response = None
         ret_val = None
 
-        # refresh bigid access token
+        # Refresh bigid access token
         ret_val, response = self._refresh_bigid_token(action_result)
         if phantom.is_fail(ret_val):
             # the call to the 3rd party device or service failed, action result should contain all the error details
@@ -264,50 +264,7 @@ class BigidDataDiscoveryConnector(BaseConnector):
         # For now return Error with a message, in case of success we don't set the message, but use the summary
         # return action_result.set_status(phantom.APP_ERROR, "Action not yet implemented")
 
-    def _handle_metadata_search_by_filter(self, param):
-        # Implement the handler here
-        # use self.save_progress(...) to send progress messages back to the platform
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
-
-        # Add an action result object to self (BaseConnector) to represent the action for this param
-        action_result = self.add_action_result(ActionResult(dict(param)))
-
-        # Access action parameters passed in the 'param' dictionary
-
-        # Required values can be accessed directly
-        # required_parameter = param['required_parameter']
-
-        # Optional values should use the .get() function
-        # optional_parameter = param.get('optional_parameter', 'default_value')
-
-        # make rest call
-        ret_val, response = self._make_rest_call(
-            '/metadata-search/filter', action_result, params=None, headers=None
-        )
-
-        if phantom.is_fail(ret_val):
-            # the call to the 3rd party device or service failed, action result should contain all the error details
-            # for now the return is commented out, but after implementation, return from here
-            # return action_result.get_status()
-            pass
-
-        # Now post process the data,  uncomment code as you deem fit
-
-        # Add the response into the data section
-        action_result.add_data(response)
-
-        # Add a dictionary that is made up of the most important values from data into the summary
-        # summary = action_result.update_summary({})
-        # summary['num_data'] = len(action_result['data'])
-
-        # Return success, no need to set the message, only the status
-        # BaseConnector will create a textual message based off of the summary dictionary
-        # return action_result.set_status(phantom.APP_SUCCESS)
-
-        # For now return Error with a message, in case of success we don't set the message, but use the summary
-        return action_result.set_status(phantom.APP_ERROR, "Action not yet implemented")
-
-    def _handle_get_catalog_data_objects(self, param):
+    def _handle_get_catalog_objects(self, param):
         # Implement the handler here
         # use self.save_progress(...) to send progress messages back to the platform
         self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
@@ -329,13 +286,13 @@ class BigidDataDiscoveryConnector(BaseConnector):
         data = None
         ret_val = None
 
-        # refresh bigid access token
+        # Refresh bigid access token
         ret_val, response = self._refresh_bigid_token(action_result)
         if phantom.is_fail(ret_val):
             # the call to the 3rd party device or service failed, action result should contain all the error details
             return action_result.get_status()
 
-        # retrieve bigid catalog objects based on filter
+        # Retrieve bigid catalog objects based on filter
         try:
             response = self._bigid_proxy.get_request('data-catalog/?format=json&limit={}&offset={}&{}'.format(
                 limit, offset, urllib.parse.urlencode({"filter": filter_string})))
@@ -387,13 +344,13 @@ class BigidDataDiscoveryConnector(BaseConnector):
         data = None
         findings = []
 
-        # refresh bigid access token
+        # Refresh bigid access token
         ret_val, response = self._refresh_bigid_token(action_result)
         if phantom.is_fail(ret_val):
             # the call to the 3rd party device or service failed, action result should contain all the error details
             return action_result.get_status()
 
-        # get pii findings for each data source provided
+        # Get pii findings for each data source provided
         for source in data_sources:
             try:
                 response = self._bigid_proxy.get_request('data-catalog/objects-with-pii/{}/'.format(source.strip()))
@@ -442,13 +399,13 @@ class BigidDataDiscoveryConnector(BaseConnector):
         response = None
         data = None
 
-        # refresh bigid access token
+        # Refresh bigid access token
         ret_val, response = self._refresh_bigid_token(action_result)
         if phantom.is_fail(ret_val):
             # the call to the 3rd party device or service failed, action result should contain all the error details
             return action_result.get_status()
 
-        # execute the scan for the data source
+        # Execute the scan for the data source
         try:
             response = self._bigid_proxy.post_request('ds-connections/{}/scan?isSampleScan={}&scanType={}&autoAssumeScanType=false'.format(
                 data_source_name, "false", "metadataScan"), {})
@@ -480,7 +437,7 @@ class BigidDataDiscoveryConnector(BaseConnector):
         # BaseConnector will create a textual message based off of the summary dictionary
         return action_result.set_status(phantom.APP_SUCCESS)
 
-    def _handle_get_last_scan_result(self, param):
+    def _handle_get_last_scan(self, param):
         # Implement the handler here
         # use self.save_progress(...) to send progress messages back to the platform
         self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
@@ -497,13 +454,13 @@ class BigidDataDiscoveryConnector(BaseConnector):
         response = None
         data = None
 
-        # refresh bigid access token
+        # Refresh bigid access token
         ret_val, response = self._refresh_bigid_token(action_result)
         if phantom.is_fail(ret_val):
             # the call to the 3rd party device or service failed, action result should contain all the error details
             return action_result.get_status()
 
-        # retrieve the last scan result for the data source
+        # Retrieve the last scan result for the data source
         try:
             response = self._bigid_proxy.get_request('ds-connections/{}/scan'.format(data_source_name))
             data = json.loads(response.text)
@@ -536,9 +493,7 @@ class BigidDataDiscoveryConnector(BaseConnector):
 
     def _handle_get_audit_logs(self, param):
         # DC - 3/13/23
-        # - convert output to json (if not already)
-        # - add optional filters for user and audit action
-        #
+        # - Need to add optional filters for user and audit action
 
         # Implement the handler here
         # use self.save_progress(...) to send progress messages back to the platform
@@ -559,13 +514,13 @@ class BigidDataDiscoveryConnector(BaseConnector):
         response = None
         data = None
 
-        # refresh bigid access token
+        # Refresh bigid access token
         ret_val, response = self._refresh_bigid_token(action_result)
         if phantom.is_fail(ret_val):
             # the call to the 3rd party device or service failed, action result should contain all the error details
             return action_result.get_status()
 
-        # retrieve the last scan result for the data source
+        # Retrieve the last scan result for the data source
         try:
             response = self._bigid_proxy.get_request('audit-log')
             data = response.text.splitlines()
@@ -588,9 +543,9 @@ class BigidDataDiscoveryConnector(BaseConnector):
 
         # Add the response into the data section
         for obj in data:
-            # split each object string to parse out individual fields
+            # Split each object string to parse out individual fields
             fields = obj.split('[')
-            # form json object from the fields
+            # Form json object from the fields
             json = {
                 'timestamp': fields[1].replace(']', '').strip(),
                 'user': fields[2].replace(']', '').strip(),
@@ -600,7 +555,7 @@ class BigidDataDiscoveryConnector(BaseConnector):
                 'resource': fields[6].replace(']', '').strip(),
                 'user_agent': fields[7].replace(']', '').strip()
             }
-            # add the json object to the result_action data
+            # Add the json object to the result_action data
             action_result.add_data(json)
 
         # Add a dictionary that is made up of the most important values from data into the summary
@@ -625,8 +580,8 @@ class BigidDataDiscoveryConnector(BaseConnector):
         if action_id == 'metadata_search_by_filter':
             ret_val = self._handle_metadata_search_by_filter(param)
 
-        if action_id == 'get_catalog_data_objects':
-            ret_val = self._handle_get_catalog_data_objects(param)
+        if action_id == 'get_catalog_objects':
+            ret_val = self._handle_get_catalog_objects(param)
 
         if action_id == 'get_pii_findings':
             ret_val = self._handle_get_pii_findings(param)
@@ -634,8 +589,8 @@ class BigidDataDiscoveryConnector(BaseConnector):
         if action_id == 'execute_scan':
             ret_val = self._handle_execute_scan(param)
 
-        if action_id == 'get_last_scan_result':
-            ret_val = self._handle_get_last_scan_result(param)
+        if action_id == 'get_last_scan':
+            ret_val = self._handle_get_last_scan(param)
 
         if action_id == 'get_audit_logs':
             ret_val = self._handle_get_audit_logs(param)
