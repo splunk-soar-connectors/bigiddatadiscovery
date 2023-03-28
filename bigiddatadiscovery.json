@@ -16,11 +16,11 @@
     }
   ],
   "license": "Copyright (c) BigID, 2023",
-  "app_version": "1.9.0",
+  "app_version": "1.0.0",
   "utctime_updated": "2023-03-13T19:22:48.418638Z",
   "package_name": "phantom_bigiddatadiscovery",
   "main_module": "bigiddatadiscovery_connector.py",
-  "min_phantom_version": "5.3.5.97812",
+  "min_phantom_version": "5.3.5",
   "app_wizard_version": "1.0.0",
   "configuration": {
     "username": {

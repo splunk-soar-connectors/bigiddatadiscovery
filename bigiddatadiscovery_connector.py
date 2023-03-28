@@ -180,9 +180,11 @@ class BigidDataDiscoveryConnector(BaseConnector):
         try:
             response = self._bigid_proxy.refresh_token()
             return RetVal(phantom.APP_SUCCESS, response)
-        except:
+        except Exception as e:
+            message = "Error calling {}: {}".format(self.get_action_identifier(), str(e))
+            self.debug_print(message)
             return RetVal(
-                action_result.set_status(phantom.APP_ERROR, "Error calling self._bigid_proxy.refresh_token()"),
+                action_result.set_status(phantom.APP_ERROR, message),
                 response
             )
 
@@ -339,9 +341,11 @@ class BigidDataDiscoveryConnector(BaseConnector):
                 limit, offset, urllib.parse.urlencode({"filter": filter_string})))
             data = json.loads(response.text)
             ret_val = RetVal(phantom.APP_SUCCESS, data)
-        except:
+        except Exception as e:
+            message = "Error calling {}: {}".format(self.get_action_identifier(), str(e))
+            self.debug_print(message)
             ret_val = RetVal(
-                action_result.set_status(phantom.APP_ERROR, "Error calling self._bigid_proxy.get_catalog_data_objects()"),
+                action_result.set_status(phantom.APP_ERROR, message),
                 response
             )
 
@@ -396,9 +400,11 @@ class BigidDataDiscoveryConnector(BaseConnector):
                 data = json.loads(response.text)
                 findings.append({'{}'.format(source): data['data']})
                 ret_val = RetVal(phantom.APP_SUCCESS, findings)
-            except:
+            except Exception as e:
+                message = "Error retrieving PII findings for {}: {}".format(source, str(e))
+                self.debug_print(message)
                 ret_val = RetVal(
-                    action_result.set_status(phantom.APP_ERROR, "Error calling self._bigid_proxy.get_pii_findings()"),
+                    action_result.set_status(phantom.APP_ERROR, message),
                     response
                 )
 
@@ -449,9 +455,11 @@ class BigidDataDiscoveryConnector(BaseConnector):
             data = json.loads(response.text)
             result = data["data"]
             ret_val = RetVal(phantom.APP_SUCCESS, result)
-        except:
+        except Exception as e:
+            message = "Error calling {}: {}".format(self.get_action_identifier(), str(e))
+            self.debug_print(message)
             ret_val = RetVal(
-                action_result.set_status(phantom.APP_ERROR, "Error calling self._bigid_proxy.execute_scan()"),
+                action_result.set_status(phantom.APP_ERROR, message),
                 response
             )
 
@@ -501,9 +509,11 @@ class BigidDataDiscoveryConnector(BaseConnector):
             data = json.loads(response.text)
             result = data["data"]
             ret_val = RetVal(phantom.APP_SUCCESS, result)
-        except:
+        except Exception as e:
+            message = "Error calling {}: {}".format(self.get_action_identifier(), str(e))
+            self.debug_print(message)
             ret_val = RetVal(
-                action_result.set_status(phantom.APP_ERROR, "Error calling self._bigid_proxy.get_last_scan_result()"),
+                action_result.set_status(phantom.APP_ERROR, message),
                 response
             )
 
@@ -560,9 +570,11 @@ class BigidDataDiscoveryConnector(BaseConnector):
             response = self._bigid_proxy.get_request('audit-log')
             data = response.text.splitlines()
             ret_val = RetVal(phantom.APP_SUCCESS, data)
-        except:
+        except Exception as e:
+            message = "Error calling {}: {}".format(self.get_action_identifier(), str(e))
+            self.debug_print(message)
             ret_val = RetVal(
-                action_result.set_status(phantom.APP_ERROR, "Error calling self._bigid_proxy.get_audit_logs()"),
+                action_result.set_status(phantom.APP_ERROR, message),
                 response
             )
 
