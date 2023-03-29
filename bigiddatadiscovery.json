@@ -9,7 +9,7 @@
     "product_name": "Discovery Foundation",
     "python_version": "3",
     "product_version_regex": ".*",
-    "publisher": "BigID",
+    "publisher": "Splunk",
     "contributors": [
         {
             "name": "Darrell Coleman"
@@ -20,15 +20,13 @@
     "utctime_updated": "2023-03-13T19:22:48.418638Z",
     "package_name": "phantom_bigiddatadiscovery",
     "main_module": "bigiddatadiscovery_connector.py",
-    "min_phantom_version": "5.3.5",
+    "min_phantom_version": "5.5.0",
     "app_wizard_version": "1.0.0",
+    "fips_compliant": false,
     "configuration": {
         "username": {
             "description": "BigID Username",
             "data_type": "string",
-            "required": false,
-            "value_list": [],
-            "default": "",
             "order": 0,
             "name": "username",
             "id": 0
@@ -36,7 +34,6 @@
         "password": {
             "description": "BigID Password",
             "data_type": "password",
-            "required": false,
             "order": 1,
             "name": "password",
             "id": 1
@@ -45,8 +42,6 @@
             "description": "BigID Host",
             "data_type": "string",
             "required": true,
-            "value_list": [],
-            "default": "",
             "order": 2,
             "name": "host",
             "id": 2
@@ -54,7 +49,6 @@
         "accessToken": {
             "description": "BigID user access token",
             "data_type": "password",
-            "required": false,
             "order": 3,
             "name": "accessToken",
             "id": 3
@@ -84,8 +78,12 @@
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 0
+                    "column_name": "Status",
+                    "column_order": 0,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -116,11 +114,6 @@
                 "filter": {
                     "description": "Search filter",
                     "data_type": "string",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "filter",
                     "id": 1,
@@ -129,11 +122,6 @@
                 "limit": {
                     "description": "Pagination limit",
                     "data_type": "numeric",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 1,
                     "name": "limit",
                     "id": 2,
@@ -142,11 +130,6 @@
                 "offset": {
                     "description": "Number of records to skip",
                     "data_type": "numeric",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 2,
                     "name": "offset",
                     "id": 3,
@@ -157,29 +140,30 @@
                 {
                     "data_path": "action_result.parameter.filter",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "filter",
+                    "column_name": "Filter",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.limit",
                     "data_type": "numeric",
-                    "contains": [],
-                    "column_name": "limit",
+                    "column_name": "Limit",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.parameter.offset",
                     "data_type": "numeric",
-                    "contains": [],
-                    "column_name": "offset",
+                    "column_name": "Offset",
                     "column_order": 2
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 3
+                    "column_name": "Status",
+                    "column_order": 3,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -211,10 +195,6 @@
                     "description": "Comma delimited list of data source names",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "data_sources",
                     "id": 1,
@@ -225,15 +205,18 @@
                 {
                     "data_path": "action_result.parameter.data_sources",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "data_sources",
+                    "column_name": "Data Sources",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -265,10 +248,6 @@
                     "description": "Name of the data source",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "data_source_name",
                     "id": 1,
@@ -279,15 +258,18 @@
                 {
                     "data_path": "action_result.parameter.data_source_name",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "data_source_name",
+                    "column_name": "Data Source Name",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -319,10 +301,6 @@
                     "description": "Name of the data source",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "data_source_name",
                     "id": 1,
@@ -333,15 +311,18 @@
                 {
                     "data_path": "action_result.parameter.data_source_name",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "data_source_name",
+                    "column_name": "Data Source Name",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -373,8 +354,12 @@
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 0
+                    "column_name": "Status",
+                    "column_order": 0,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
