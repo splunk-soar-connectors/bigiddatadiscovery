@@ -1,12 +1,12 @@
 [comment]: # "Auto-generated SOAR connector documentation"
 # BigID Data Discovery
 
-Publisher: BigID  
+Publisher: Splunk  
 Connector Version: 1.0.0  
 Product Vendor: BigiD  
 Product Name: Discovery Foundation  
 Product Version Supported (regex): ".\*"  
-Minimum Product Version: 5.3.5  
+Minimum Product Version: 5.5.0  
 
 BigID is a next-gen data discovery and intelligence platform for the data you know and the data you don’t know
 
@@ -81,7 +81,7 @@ No parameters are required for this action
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |  
+action_result.status | string |  |   success  failed 
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
@@ -107,7 +107,7 @@ DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 action_result.parameter.filter | string |  |  
 action_result.parameter.limit | numeric |  |  
 action_result.parameter.offset | numeric |  |  
-action_result.status | string |  |  
+action_result.status | string |  |   success  failed 
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
@@ -129,7 +129,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.parameter.data_sources | string |  |  
-action_result.status | string |  |  
+action_result.status | string |  |   success  failed 
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
@@ -151,7 +151,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.parameter.data_source_name | string |  |  
-action_result.status | string |  |  
+action_result.status | string |  |   success  failed 
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
@@ -173,7 +173,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.parameter.data_source_name | string |  |  
-action_result.status | string |  |  
+action_result.status | string |  |   success  failed 
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |    
@@ -192,7 +192,7 @@ No parameters are required for this action
 #### Action Output
 DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
-action_result.status | string |  |  
+action_result.status | string |  |   success  failed 
 action_result.message | string |  |  
 summary.total_objects | numeric |  |  
 summary.total_objects_successful | numeric |  |  
