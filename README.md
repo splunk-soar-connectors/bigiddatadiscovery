@@ -1,7 +1,7 @@
 [comment]: # "Auto-generated SOAR connector documentation"
 # BigID Data Discovery
 
-Publisher: Splunk  
+Publisher: Splunk Community  
 Connector Version: 1.0.0  
 Product Vendor: BigiD  
 Product Name: Discovery Foundation  
