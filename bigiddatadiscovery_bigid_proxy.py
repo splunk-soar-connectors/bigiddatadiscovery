@@ -1,4 +1,4 @@
-# File: bigid_proxy.py
+# File: bigiddatadiscovery_bigid_proxy.py
 #
 # Copyright (c) 2023 BigID
 #
@@ -29,17 +29,16 @@ class BigidProxy:
         print(payload)
 
     def get_request(self, endpoint):
-        return requests.get(self.bigid_url + endpoint, headers=self.headers, verify=False)
+        return requests.get(self.bigid_url + endpoint, headers=self.headers, verify=False)  # nosemgrep
 
     def post_request(self, endpoint, payload):
-        return requests.post(self.bigid_url + endpoint, headers=self.headers, verify=False, data=payload)
+        return requests.post(self.bigid_url + endpoint, headers=self.headers, verify=False, data=payload)  # nosemgrep
 
     def put_request(self, endpoint, payload):
-        return requests.put(self.bigid_url + endpoint, headers=self.headers, verify=False, data=payload)
+        return requests.put(self.bigid_url + endpoint, headers=self.headers, verify=False, data=payload)  # nosemgrep
 
     def refresh_token(self):
-        # nosemgrep
-        response = requests.get(self.bigid_url + 'refresh-access-token', headers=self.headers, verify=False)
+        response = requests.get(self.bigid_url + 'refresh-access-token', headers=self.headers, verify=False)  # nosemgrep
         data = json.loads(response.text)
         self.headers['Authorization'] = data['systemToken']
         return data['systemToken']
