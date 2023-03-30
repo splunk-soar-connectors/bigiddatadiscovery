@@ -9,7 +9,7 @@
     "product_name": "Discovery Foundation",
     "python_version": "3",
     "product_version_regex": ".*",
-    "publisher": "Splunk",
+    "publisher": "Splunk Community",
     "contributors": [
         {
             "name": "Darrell Coleman"
@@ -27,31 +27,23 @@
         "username": {
             "description": "BigID Username",
             "data_type": "string",
-            "order": 0,
-            "name": "username",
-            "id": 0
+            "order": 0
         },
         "password": {
             "description": "BigID Password",
             "data_type": "password",
-            "order": 1,
-            "name": "password",
-            "id": 1
+            "order": 1
         },
         "host": {
             "description": "BigID Host",
             "data_type": "string",
             "required": true,
-            "order": 2,
-            "name": "host",
-            "id": 2
+            "order": 2
         },
         "accessToken": {
             "description": "BigID user access token",
             "data_type": "password",
-            "order": 3,
-            "name": "accessToken",
-            "id": 3
+            "order": 3
         }
     },
     "actions": [
@@ -114,26 +106,17 @@
                 "filter": {
                     "description": "Search filter",
                     "data_type": "string",
-                    "order": 0,
-                    "name": "filter",
-                    "id": 1,
-                    "param_name": "filter"
+                    "order": 0
                 },
                 "limit": {
                     "description": "Pagination limit",
                     "data_type": "numeric",
-                    "order": 1,
-                    "name": "limit",
-                    "id": 2,
-                    "param_name": "limit"
+                    "order": 1
                 },
                 "offset": {
                     "description": "Number of records to skip",
                     "data_type": "numeric",
-                    "order": 2,
-                    "name": "offset",
-                    "id": 3,
-                    "param_name": "offset"
+                    "order": 2
                 }
             },
             "output": [
@@ -195,10 +178,7 @@
                     "description": "Comma delimited list of data source names",
                     "data_type": "string",
                     "required": true,
-                    "order": 0,
-                    "name": "data_sources",
-                    "id": 1,
-                    "param_name": "data_sources"
+                    "order": 0
                 }
             },
             "output": [
@@ -248,10 +228,7 @@
                     "description": "Name of the data source",
                     "data_type": "string",
                     "required": true,
-                    "order": 0,
-                    "name": "data_source_name",
-                    "id": 1,
-                    "param_name": "data_source_name"
+                    "order": 0
                 }
             },
             "output": [
@@ -301,10 +278,7 @@
                     "description": "Name of the data source",
                     "data_type": "string",
                     "required": true,
-                    "order": 0,
-                    "name": "data_source_name",
-                    "id": 1,
-                    "param_name": "data_source_name"
+                    "order": 0
                 }
             },
             "output": [
