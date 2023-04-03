@@ -1,1 +1,2 @@
 **Unreleased**
+* Initial app release

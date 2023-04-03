@@ -1,0 +1,477 @@
+{
+    "appid": "c6c71937-9ed9-443b-a375-05280423cae6",
+    "name": "BigID Data Discovery",
+    "description": "BigID is a next-gen data discovery and intelligence platform for the data you know and the data you don\u2019t know",
+    "type": "information",
+    "product_vendor": "BigiD",
+    "logo": "logo_bigiddatadiscovery.svg",
+    "logo_dark": "logo_bigiddatadiscovery_dark.svg",
+    "product_name": "Discovery Foundation",
+    "python_version": "3",
+    "product_version_regex": ".*",
+    "publisher": "Splunk Community",
+    "contributors": [
+        {
+            "name": "Darrell Coleman"
+        }
+    ],
+    "license": "Copyright (c) BigID, 2023",
+    "app_version": "1.0.0",
+    "utctime_updated": "2023-03-13T19:22:48.418638Z",
+    "package_name": "phantom_bigiddatadiscovery",
+    "main_module": "bigiddatadiscovery_connector.py",
+    "min_phantom_version": "5.5.0",
+    "app_wizard_version": "1.0.0",
+    "fips_compliant": false,
+    "configuration": {
+        "username": {
+            "description": "BigID Username",
+            "data_type": "string",
+            "order": 0
+        },
+        "password": {
+            "description": "BigID Password",
+            "data_type": "password",
+            "order": 1
+        },
+        "host": {
+            "description": "BigID Host",
+            "data_type": "string",
+            "required": true,
+            "order": 2
+        },
+        "accessToken": {
+            "description": "BigID user access token",
+            "data_type": "password",
+            "order": 3
+        }
+    },
+    "actions": [
+        {
+            "action": "test connectivity",
+            "identifier": "test_connectivity",
+            "description": "Validate the asset configuration for connectivity using supplied configuration",
+            "verbose": "This action will validate the asset configuration for connectivity using supplied configuration.",
+            "type": "test",
+            "read_only": true,
+            "parameters": {},
+            "output": [],
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "refresh session token",
+            "identifier": "refresh_session_token",
+            "description": "Refresh the session token",
+            "verbose": "This action will refresh the user access token for BigID.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {},
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "Status",
+                    "column_order": 0,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get catalog objects",
+            "identifier": "get_catalog_objects",
+            "description": "Get a full list of all data objects and their characteristics",
+            "verbose": "This action retrieves a full list of all data objects and their characteristics from the BigID data catalog.",
+            "type": "investigate",
+            "read_only": false,
+            "parameters": {
+                "filter": {
+                    "description": "Search filter",
+                    "data_type": "string",
+                    "order": 0
+                },
+                "limit": {
+                    "description": "Pagination limit",
+                    "data_type": "numeric",
+                    "order": 1
+                },
+                "offset": {
+                    "description": "Number of records to skip",
+                    "data_type": "numeric",
+                    "order": 2
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "Status",
+                    "column_order": 3,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.filter",
+                    "data_type": "string",
+                    "column_name": "Filter",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.parameter.limit",
+                    "data_type": "numeric",
+                    "column_name": "Limit",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.parameter.offset",
+                    "data_type": "numeric",
+                    "column_name": "Offset",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get pii findings",
+            "identifier": "get_pii_findings",
+            "description": "Retrieve all PII findings for a given list of data sources",
+            "verbose": "This action retrieves all PII findings from BigID for the list of data sources provided by the user.",
+            "type": "investigate",
+            "read_only": false,
+            "parameters": {
+                "data_sources": {
+                    "description": "Comma delimited list of data source names",
+                    "data_type": "string",
+                    "required": true,
+                    "order": 0
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.data_sources",
+                    "data_type": "string",
+                    "column_name": "Data Sources",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "execute scan",
+            "identifier": "execute_scan",
+            "description": "Execute a scan for a given data source",
+            "verbose": "This action executes a BigID data scan of the data source provided by the user.",
+            "type": "investigate",
+            "read_only": false,
+            "parameters": {
+                "data_source_name": {
+                    "description": "Name of the data source",
+                    "data_type": "string",
+                    "required": true,
+                    "order": 0
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.data_source_name",
+                    "data_type": "string",
+                    "column_name": "Data Source Name",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get last scan",
+            "identifier": "get_last_scan",
+            "description": "Retrieve the most recent scan result for the data source",
+            "verbose": "This action retrieves the most recent BigID data scan result for the data source provided by the user.",
+            "type": "investigate",
+            "read_only": false,
+            "parameters": {
+                "data_source_name": {
+                    "description": "Name of the data source",
+                    "data_type": "string",
+                    "required": true,
+                    "order": 0
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.data_source_name",
+                    "data_type": "string",
+                    "column_name": "Data Source Name",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get audit logs",
+            "identifier": "get_audit_logs",
+            "description": "Retrieve BigID audit logs",
+            "verbose": "This action will retrieve audit logs from the BigID system.",
+            "type": "investigate",
+            "read_only": false,
+            "parameters": {},
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "Status",
+                    "column_order": 0,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        }
+    ],
+    "custom_made": true,
+    "directory": "bigiddatadiscovery_c6c71937-9ed9-443b-a375-05280423cae6",
+    "version": 1,
+    "appname": "-",
+    "executable": "spawn3",
+    "disabled": false,
+    "copied_from_id": 23,
+    "copied_from_version": "1.8.0",
+    "pip3_dependencies": {
+        "wheel": [
+            {
+                "module": "beautifulsoup4",
+                "input_file": "wheels/py3/beautifulsoup4-4.9.1-py3-none-any.whl"
+            },
+            {
+                "module": "certifi",
+                "input_file": "wheels/py3/certifi-2022.12.7-py3-none-any.whl"
+            },
+            {
+                "module": "chardet",
+                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
+            },
+            {
+                "module": "idna",
+                "input_file": "wheels/shared/idna-2.10-py2.py3-none-any.whl"
+            },
+            {
+                "module": "requests",
+                "input_file": "wheels/shared/requests-2.25.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "soupsieve",
+                "input_file": "wheels/py3/soupsieve-2.3.2.post1-py3-none-any.whl"
+            },
+            {
+                "module": "urllib3",
+                "input_file": "wheels/shared/urllib3-1.26.15-py2.py3-none-any.whl"
+            }
+        ]
+    },
+    "pip39_dependencies": {
+        "wheel": [
+            {
+                "module": "beautifulsoup4",
+                "input_file": "wheels/py3/beautifulsoup4-4.9.1-py3-none-any.whl"
+            },
+            {
+                "module": "certifi",
+                "input_file": "wheels/py3/certifi-2022.12.7-py3-none-any.whl"
+            },
+            {
+                "module": "chardet",
+                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
+            },
+            {
+                "module": "idna",
+                "input_file": "wheels/shared/idna-2.10-py2.py3-none-any.whl"
+            },
+            {
+                "module": "requests",
+                "input_file": "wheels/shared/requests-2.25.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "soupsieve",
+                "input_file": "wheels/py3/soupsieve-2.4-py3-none-any.whl"
+            },
+            {
+                "module": "urllib3",
+                "input_file": "wheels/shared/urllib3-1.26.15-py2.py3-none-any.whl"
+            }
+        ]
+    }
+}
